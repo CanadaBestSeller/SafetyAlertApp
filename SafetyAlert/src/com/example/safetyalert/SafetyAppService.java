@@ -24,6 +24,10 @@ public class SafetyAppService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int starttId) {
 		
+		if (!Utils.isExternalStorageWritable()) {
+			Toast.makeText(this, "THIS APP WON'T WORK WITHOUT EXTERNAL STORAGE!", Toast.LENGTH_LONG).show();
+		}
+
 		Utils.appendToLog("Started SafetyApp");
 
 		Notification safetyAppOnNotification = NotificationFactory.safetyAppOnNotification(this);

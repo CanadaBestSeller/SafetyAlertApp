@@ -53,6 +53,7 @@ public class DialogManager {
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						Intent i = new Intent(context, DisplayTriggerDetailsActivity.class);
+						i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						context.startActivity(i);
 					}
 				});

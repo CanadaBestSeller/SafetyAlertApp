@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Environment;
 import android.widget.Toast;
 
 public class GuardianModeAlarm extends BroadcastReceiver {
@@ -44,22 +43,12 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 		am.cancel(pi);
 	}
 
-	/* Checks if external storage is available for read and write */
-	public boolean isExternalStorageWritable() {
-	    String state = Environment.getExternalStorageState();
-	    if (Environment.MEDIA_MOUNTED.equals(state)) {
-	        return true;
-	    }
-	    return false;
-	}
-
 	private void initiateGuardianRequest() {
 
-		String state = isExternalStorageWritable() ? "CAN WRITE TO EXT" : "CANNOT WRITE TO EXT!";
-		Toast.makeText(context, state, Toast.LENGTH_SHORT).show();
+		Toast.makeText(context, Integer.toString(requests_left), Toast.LENGTH_SHORT).show();
 		
-//		DialogManager dm = new DialogManager(context);
-//		dm.spawnRequest(guardianModeDuration);
+		DialogManager dm = new DialogManager(context);
+		dm.spawnRequest(guardianModeDuration);
 
 		// Check if there are any other guardian requests.
 		this.setAlarm(context);
