@@ -50,7 +50,7 @@ public class SafetyAppService extends Service {
 
 		toast(R.string.alert_on, Toast.LENGTH_SHORT);
 
-		guardianModeAlarm.setAlarm(SafetyAppService.this, System.currentTimeMillis() + 1000*5);
+		guardianModeAlarm.setAlarm(SafetyAppService.this);
 
 //		DialogManager dm = new DialogManager(this)
 //		dm.spawnRequest();
