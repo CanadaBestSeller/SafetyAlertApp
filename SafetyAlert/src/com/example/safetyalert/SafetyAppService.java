@@ -32,7 +32,7 @@ public class SafetyAppService extends Service {
 		super.onDestroy();
 		toast(R.string.alert_off, Toast.LENGTH_SHORT);
 		notificationManager.cancel(SAFETY_APP_SERVICE_ID);
-		guardianModeAlarm.CancelAlarm(this);
+		guardianModeAlarm.cancelAlarm(this);
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class SafetyAppService extends Service {
 
 		toast(R.string.alert_on, Toast.LENGTH_SHORT);
 
-		guardianModeAlarm.SetAlarm(SafetyAppService.this);
+		guardianModeAlarm.setAlarm(SafetyAppService.this, System.currentTimeMillis() + 1000*5);
 
 //		DialogManager dm = new DialogManager(this)
 //		dm.spawnRequest();

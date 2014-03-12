@@ -17,22 +17,24 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 		initiateGuardianRequest();
 	}
 
-	private void initiateGuardianRequest() {
-		String ts = Long.toString(System.currentTimeMillis());
-		Toast.makeText(context, ts, Toast.LENGTH_SHORT).show();
-	}
-
-	public void SetAlarm(Context context) {
+	public void setAlarm(Context context, long time) {
 		AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		Intent i = new Intent(context, GuardianModeAlarm.class);
 		PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
-		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000*5, operation);
+		am.set(AlarmManager.RTC_WAKEUP, time, operation);
 	}
 	
-	public void CancelAlarm(Context context) {
+	public void cancelAlarm(Context context) {
 		AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		Intent i = new Intent(context, GuardianModeAlarm.class);
 		PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
 		am.cancel(pi);
+	}
+
+	private void initiateGuardianRequest() {
+		Toast.makeText(context, "HELLO!", Toast.LENGTH_SHORT).show();
+		
+		this.setAlarm(context, System.currentTimeMillis() + 5000);
+		Toast.makeText(context, "HELLO AGAIN!", Toast.LENGTH_SHORT).show();
 	}
 }
