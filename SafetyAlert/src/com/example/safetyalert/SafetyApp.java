@@ -33,7 +33,7 @@ public class SafetyApp implements Runnable {
 			try {
 				Thread.sleep(10000);
 
-				// GuardianMode
+				// GuardianModeActivity
                 Utils.toast(mainActivity, "Sent guardian request!", Toast.LENGTH_SHORT);
 
 			} catch (InterruptedException e) {

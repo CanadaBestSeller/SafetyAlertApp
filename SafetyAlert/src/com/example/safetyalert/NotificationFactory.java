@@ -19,11 +19,31 @@ public class NotificationFactory {
 		toMainActivity.setClass(context, MainActivity.class);
 		toMainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-		PendingIntent p = PendingIntent.getActivity(context, 0, toMainActivity, 0);
+		PendingIntent p = PendingIntent.getActivity(context, 0, toMainActivity,
+				0);
 		ncb.setContentIntent(p);
 
 		Notification notification = ncb.build();
 		notification.flags |= Notification.FLAG_ONGOING_EVENT;
+
+		return notification;
+	}
+
+	public static Notification pendingGuardianRequestNotification(Context context, int duration) {
+		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
+				.setSmallIcon(R.drawable.ic_contact)
+				.setContentTitle("Pending Guardian Request!")
+				.setContentText("Guardian duration: " + Integer.toString(duration) + ". Tap here to accept.");
+
+		// User goes back to the screen when they click the notification
+		Intent toGuardianModeActivity = new Intent(context, GuardianModeActivity.class);
+		toGuardianModeActivity.setClass(context, GuardianModeActivity.class);
+		toGuardianModeActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+		PendingIntent p = PendingIntent.getActivity(context, 0, toGuardianModeActivity, 0);
+		ncb.setContentIntent(p);
+
+		Notification notification = ncb.build();
 
 		return notification;
 	}

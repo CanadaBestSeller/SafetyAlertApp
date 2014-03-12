@@ -38,7 +38,6 @@
         <receiver 
             android:process=":remote" 
             android:name=".GuardianModeAlarm">
-            
         </receiver>
 
         <activity
@@ -48,6 +47,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.safetyalert.MainActivity" />
+        </activity>
+        
+        
+        <activity
+            android:name="com.example.safetyalert.GuardianModeActivity"
+            android:label="Guardian Mode"
+            android:parentActivityName="com.example.safetyalert.GuardianModeActivity" >
         </activity>
 
         <activity

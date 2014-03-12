@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 public class SafetyAppService extends Service {
 
-	public static final int SAFETY_APP_SERVICE_ID = 1;
+	public static final int SAFETY_APP_NOTIFICATION_ID = 0;
 
 	private NotificationManager notificationManager;
 	private GuardianModeAlarm guardianModeAlarm;
@@ -31,8 +31,8 @@ public class SafetyAppService extends Service {
 		Utils.appendToLog("Started SafetyApp");
 
 		Notification safetyAppOnNotification = NotificationFactory.safetyAppOnNotification(this);
-		notificationManager.notify(SAFETY_APP_SERVICE_ID, safetyAppOnNotification);
-		toast(R.string.alert_on, Toast.LENGTH_SHORT);
+		notificationManager.notify(SAFETY_APP_NOTIFICATION_ID, safetyAppOnNotification);
+		toast(R.string.safety_app_on, Toast.LENGTH_SHORT);
 
 		guardianModeAlarm.setAlarm(SafetyAppService.this);
 
@@ -44,8 +44,8 @@ public class SafetyAppService extends Service {
 		super.onDestroy();
 		Utils.appendToLog("Destroyed SafetyApp");
 
-		notificationManager.cancel(SAFETY_APP_SERVICE_ID);
-		toast(R.string.alert_off, Toast.LENGTH_SHORT);
+		notificationManager.cancel(SAFETY_APP_NOTIFICATION_ID);
+		toast(R.string.safety_app_off, Toast.LENGTH_SHORT);
 		guardianModeAlarm.cancelAlarm(this);
 	}
 

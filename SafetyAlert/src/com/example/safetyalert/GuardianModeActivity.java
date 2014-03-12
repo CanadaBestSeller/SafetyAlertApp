@@ -1,9 +1,35 @@
 package com.example.safetyalert;
 
-public class GuardianMode {
-	
-	public static boolean isOn = false;
+import android.app.Activity;
+import android.app.NotificationManager;
+import android.os.Bundle;
+import android.widget.Toast;
 
+public class GuardianModeActivity extends Activity {
+	
+	public static final int GUARDIAN_MODE_NOTIFICATION_ID = 1;
+
+	private NotificationManager nManager;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_guardian_mode);
+		
+		guardianModeInit();
+	}
+
+	private void guardianModeInit() {
+		Toast.makeText(this, getResources().getString(R.string.guardian_mode_on), Toast.LENGTH_LONG).show();
+
+		// Cancel pending guardian mode notification
+		nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		nManager.cancel(GuardianModeActivity.GUARDIAN_MODE_NOTIFICATION_ID);
+
+	}
+
+//	public static boolean isOn = false;
+//
 //	public void guardianModeOn(int minutes) {
 //		if (this.activation && !this.guardianMode) {
 //			// User goes back to the screen when they click the notification
