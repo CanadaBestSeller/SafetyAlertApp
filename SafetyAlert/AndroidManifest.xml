@@ -8,8 +8,8 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
-    <uses-permission 
-        android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -33,6 +33,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver 
+            android:process=":remote" 
+            android:name=".GuardianModeAlarm">
+            
+        </receiver>
+
         <activity
             android:name="com.example.safetyalert.DisplayTriggerDetailsActivity"
             android:label="Level 2 Danger"
@@ -41,6 +48,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.safetyalert.MainActivity" />
         </activity>
+
         <activity
             android:name="com.example.safetyalert.Questionnaire"
             android:label="Response Questionnaire"
