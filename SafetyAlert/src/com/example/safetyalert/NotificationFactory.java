@@ -36,7 +36,9 @@ public class NotificationFactory {
 
 		// User goes back to the screen when they click the notification
 		Intent toGuardianModeActivity = new Intent(context, GuardianModeActivity.class);
-		PendingIntent p = PendingIntent.getActivity(context, 0, toGuardianModeActivity, Intent.FLAG_ACTIVITY_NEW_TASK);
+		toGuardianModeActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		toGuardianModeActivity.putExtra(GuardianModeAlarm.EXTRA_GUARDIAN_REQUEST, g);
+		PendingIntent p = PendingIntent.getActivity(context, 0, toGuardianModeActivity, PendingIntent.FLAG_UPDATE_CURRENT);
 		ncb.setContentIntent(p);
 
 		Notification notification = ncb.build();

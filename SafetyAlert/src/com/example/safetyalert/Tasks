@@ -1,2 +1,6 @@
 A. GuardianModeActivity check elapsed time.
-Need to pass guardianship duration from notification to activity.
+Spawns an activity question which has the parent of guardian mode
+
+Enable progress bar after guardian mode is on.
+
+Put line breaks in logs where appropriate

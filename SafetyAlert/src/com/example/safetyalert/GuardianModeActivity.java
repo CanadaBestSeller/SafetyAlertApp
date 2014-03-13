@@ -2,26 +2,26 @@ package com.example.safetyalert;
 
 import android.app.Activity;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 public class GuardianModeActivity extends Activity {
 	
 	public static final int GUARDIAN_MODE_NOTIFICATION_ID = 1;
 
 	private NotificationManager nManager;
-	private int guardianModeDuration;
+	private GuardianRequest g;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guardian_mode);
 		
-		// TODO Set guardianModeDuration using putextra from intent/pendingIntent
-		//this.guardianModeDuration = intent
-		
-		Toast.makeText(this, getResources().getString(R.string.guardian_mode_on), Toast.LENGTH_LONG).show();
-		Utils.appendToLog("Guardianship request of duration " + guardianModeDuration + "mins ACCEPTED.");
+		Intent i = getIntent();
+		Bundle data = i.getExtras();
+		g = (GuardianRequest) data.getParcelable(GuardianModeAlarm.EXTRA_GUARDIAN_REQUEST);
+
+		Utils.appendToLog("Guardianship request of duration " + g.guardianshipDuration + "mins ACCEPTED.");
 
 		// Cancel pending guardian mode notification
 		nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

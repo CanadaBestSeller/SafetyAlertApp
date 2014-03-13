@@ -38,10 +38,30 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 			i.putExtra(EXTRA_GUARDIAN_REQUEST, g);
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
 
-			Utils.appendToLog("Set guardianship request to trigger @ "
-					+ Utils.long2timestamp(System.currentTimeMillis()));
-			am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, operation);
+			Utils.lineBreakLog();
+			Utils.appendToLog("Set guardianship request to trigger on "
+					+ Utils.long2timestamp(g.triggerTime));
+			am.set(AlarmManager.RTC_WAKEUP, g.triggerTime, operation);
 		}
+	}
+	
+	// THIS IS MOST LIKELY THE CULPRIT
+	// TEST DOESN'T ACTUALLY DO ANYTHING.
+	public void setTestAlarm(Context context) {
+		String[] reasons = {"Just testing.", "No one is in danger."};
+		GuardianRequest g = new GuardianRequest(System.currentTimeMillis() + 5000, 2, 1, reasons);
+
+		// set guardian mode details here
+		AlarmManager am = (AlarmManager) context .getSystemService(Context.ALARM_SERVICE);
+
+		Intent i = new Intent(context, GuardianModeAlarm.class);
+		i.putExtra(EXTRA_GUARDIAN_REQUEST, g);
+		PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
+
+		Utils.lineBreakLog();
+		Utils.appendToLog("Set TEST guardianship request to trigger on "
+				+ Utils.long2timestamp(g.triggerTime));
+		am.set(AlarmManager.RTC_WAKEUP, g.triggerTime, operation);
 	}
 
 	public void cancelAlarm(Context context) {
@@ -58,10 +78,6 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 		Utils.appendToLog("Guardianship request of duration "
 				+ g.guardianshipDuration + "mins triggered.");
 
-		// Spawn a notification, which will be canceled later
-		// If you use intent extras, remeber to call PendingIntent.getActivity()
-		// with the flag PendingIntent.FLAG_UPDATE_CURRENT, otherwise the same
-		// extras will be reused for every notification.
 		Notification safetyAppOnNotification = NotificationFactory
 				.pendingGuardianRequestNotification(context, g);
 		nManager.notify(GuardianModeActivity.GUARDIAN_MODE_NOTIFICATION_ID,

@@ -13,6 +13,7 @@ public class SafetyAppService extends Service {
 
 	private NotificationManager notificationManager;
 	private GuardianModeAlarm guardianModeAlarm;
+	private boolean test;
 
 	@Override
 	public void onCreate() {
@@ -34,7 +35,14 @@ public class SafetyAppService extends Service {
 		notificationManager.notify(SAFETY_APP_NOTIFICATION_ID, safetyAppOnNotification);
 		toast(R.string.safety_app_on, Toast.LENGTH_SHORT);
 
-		guardianModeAlarm.setAlarm(SafetyAppService.this);
+		test = intent.getBooleanExtra(MainActivity.EXTRA_TEST_BOOLEAN, false);
+
+		if (test) {
+			test = false; // turn off test right away.
+			guardianModeAlarm.setTestAlarm(SafetyAppService.this);
+		} else {
+			guardianModeAlarm.setAlarm(SafetyAppService.this);
+		}
 
 		return START_REDELIVER_INTENT;
 	}
@@ -42,7 +50,7 @@ public class SafetyAppService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Utils.appendToLog("Deactivated SafetyApp");
+		Utils.appendToLog("Deactivated SafetyApp. All scheduled guardian requests / triggers are CANCELED.\n*****\n");
 
 		notificationManager.cancel(SAFETY_APP_NOTIFICATION_ID);
 		toast(R.string.safety_app_off, Toast.LENGTH_SHORT);

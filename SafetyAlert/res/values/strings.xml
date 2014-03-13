@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">SafetyAlert</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Test request</string>
     
     <string name="activation">Activation</string>
     <string name="alert_on">Safety Alert Activated!</string>

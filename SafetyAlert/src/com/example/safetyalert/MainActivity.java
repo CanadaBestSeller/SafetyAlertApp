@@ -7,12 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends Activity {
 
 	private Intent safetyAppIntent;
+	public static final String EXTRA_TEST_BOOLEAN = "com.example.safetyalert.TEST_BOOLEAN";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,8 @@ public class MainActivity extends Activity {
 
 		setContentView(R.layout.activity_main);
 
+		// Too much work to use a static layout XML
+		// TODO Take out all the static buttons and render just the toggle programmatically
 		ToggleButton t = (ToggleButton) findViewById(R.id.activation_toggle);
 
 		// Need to change both the visual as well as the actual value
@@ -30,6 +35,31 @@ public class MainActivity extends Activity {
 		t.setSelected(safetyAppIsRunning());
 
 		t.invalidate(); // force re-draw of button
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.action_settings:
+	            addTestEntry();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+
+	private void addTestEntry() {
+		deactivateSafetyApp();
+		safetyAppIntent.putExtra(EXTRA_TEST_BOOLEAN, true);
+		activateSafetyApp();
 	}
 
 	@Override
