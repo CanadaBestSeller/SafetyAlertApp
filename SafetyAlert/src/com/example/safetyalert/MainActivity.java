@@ -28,13 +28,8 @@ public class MainActivity extends Activity {
 		// This doesn't work the right way. When notification spawns an activity, uncheck still does nothing.
 		t.setChecked(safetyAppIsRunning());
 		t.setSelected(safetyAppIsRunning());
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		t.setTextOn(Utils.nextAlert(this));
+		t.invalidate(); // force re-draw of button
 	}
 
 	@Override

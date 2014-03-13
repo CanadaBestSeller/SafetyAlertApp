@@ -1,10 +1,18 @@
 package com.example.safetyalert;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.net.ParseException;
 import android.os.Environment;
 import android.text.format.DateFormat;
 
@@ -57,5 +65,37 @@ public class Utils {
 			return true;
 		}
 		return false;
+	}
+
+	// Returns the next alert
+	public static String nextAlert(Context context) {
+		try {
+
+			AssetManager am = context.getAssets();
+			InputStream i = am.open("alert_schedule.txt");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(i));
+
+			// Example line
+			// "Mar 03 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time"
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String [] parts = line.split("-");
+				SimpleDateFormat format = new SimpleDateFormat("MMM dd yyyy HH:mm");
+				try {
+					Date nextAlertDate = format.parse(parts[0]);
+					long nextAlertDateLong = nextAlertDate.getTime();
+					if (System.currentTimeMillis() < nextAlertDateLong) return line;
+				} catch (java.text.ParseException e) {
+			System.out.println("CAN'T PARSE. Check alert_schedule.txt SYNTAX!");
+					e.printStackTrace();
+				}
+			}
+
+		} catch (IOException e) {
+			System.out.println("CAN'T OPEN ALERT SCHEDULE TEXT FILE!");
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 }
