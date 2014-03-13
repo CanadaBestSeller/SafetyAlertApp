@@ -52,8 +52,7 @@
         
         <activity
             android:name="com.example.safetyalert.GuardianModeActivity"
-            android:label="Guardian Mode"
-            android:parentActivityName="com.example.safetyalert.GuardianModeActivity" >
+            android:label="Guardian Mode" >
         </activity>
 
         <activity

@@ -15,7 +15,7 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 	private NotificationManager nManager;
 
 	private static int guardianModeDuration = 60;
-	private static int requests_left = 3;
+	private static int requests_left = 1;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -26,7 +26,6 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 
 	public void setAlarm(Context context) {
 		if (requests_left > 0) {
-			requests_left--;
 			
 			AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 			Intent i = new Intent(context, GuardianModeAlarm.class);
@@ -35,7 +34,7 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 			am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, operation);
 
 			// set guardian mode details here
-			guardianModeDuration = 3;
+			guardianModeDuration = 30;
 		}
 	}
 
@@ -60,6 +59,7 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 		dm.spawnRequest(guardianModeDuration);
 
 		// Check if there are any other guardian requests.
+		requests_left--;
 		this.setAlarm(context);
 	}
 }

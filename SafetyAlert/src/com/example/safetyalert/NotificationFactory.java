@@ -19,8 +19,7 @@ public class NotificationFactory {
 		toMainActivity.setClass(context, MainActivity.class);
 		toMainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-		PendingIntent p = PendingIntent.getActivity(context, 0, toMainActivity,
-				0);
+		PendingIntent p = PendingIntent.getActivity(context, 0, toMainActivity, 0);
 		ncb.setContentIntent(p);
 
 		Notification notification = ncb.build();
@@ -37,10 +36,7 @@ public class NotificationFactory {
 
 		// User goes back to the screen when they click the notification
 		Intent toGuardianModeActivity = new Intent(context, GuardianModeActivity.class);
-		toGuardianModeActivity.setClass(context, GuardianModeActivity.class);
-		toGuardianModeActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-		PendingIntent p = PendingIntent.getActivity(context, 0, toGuardianModeActivity, 0);
+		PendingIntent p = PendingIntent.getActivity(context, 0, toGuardianModeActivity, Intent.FLAG_ACTIVITY_NEW_TASK);
 		ncb.setContentIntent(p);
 
 		Notification notification = ncb.build();
