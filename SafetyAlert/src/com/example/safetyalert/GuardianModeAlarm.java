@@ -7,24 +7,24 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
+import android.os.Bundle;
 
 public class GuardianModeAlarm extends BroadcastReceiver {
 	
-	public final static String EXTRA_GUARDIAN_MODE_DURATION = 
-			"com.example.safetyalert.EXTRA_GUARDIAN_MODE_DURATION";
+	public final static String EXTRA_GUARDIAN_REQUEST = 
+			"com.example.safetyalert.GUARDIAN_REQUEST";
 
 	private Context context;
 	private NotificationManager nManager;
-
-	private static int requests_left = 1;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		this.context = context;
 		nManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		int guardianModeDuration = intent.getIntExtra(EXTRA_GUARDIAN_MODE_DURATION, 0);
-		initiateGuardianRequest(guardianModeDuration);
+
+		Bundle data = intent.getExtras();
+		GuardianRequest g = (GuardianRequest) data.getParcelable(EXTRA_GUARDIAN_REQUEST);
+		initiateGuardianRequest(g);
 	}
 
 	public void setAlarm(Context context) {
@@ -32,19 +32,15 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 		if ((g = Utils.nextAlert(context)) != null) {
 
 			// set guardian mode details here
-			int guardianModeDuration = g.guardianshipDuration;
+			AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-			AlarmManager am = (AlarmManager) context
-					.getSystemService(Context.ALARM_SERVICE);
 			Intent i = new Intent(context, GuardianModeAlarm.class);
-			i.putExtra(EXTRA_GUARDIAN_MODE_DURATION, guardianModeDuration);
+			i.putExtra(EXTRA_GUARDIAN_REQUEST, g);
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
 
 			Utils.appendToLog("Set guardianship request to trigger @ "
 					+ Utils.long2timestamp(System.currentTimeMillis()));
-			am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 20000,
-					operation);
-
+			am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, operation);
 		}
 	}
 
@@ -56,28 +52,25 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 		am.cancel(pi);
 	}
 
-	private void initiateGuardianRequest(int guardianModeDuration) {
+	private void initiateGuardianRequest(GuardianRequest g) {
 
-		Toast.makeText(context, Integer.toString(requests_left),
-				Toast.LENGTH_SHORT).show();
+		//Toast.makeText(context, Integer.toString(requests_left), Toast.LENGTH_SHORT).show();
 		Utils.appendToLog("Guardianship request of duration "
-				+ guardianModeDuration + "mins triggered.");
+				+ g.guardianshipDuration + "mins triggered.");
 
 		// Spawn a notification, which will be canceled later
 		// If you use intent extras, remeber to call PendingIntent.getActivity()
 		// with the flag PendingIntent.FLAG_UPDATE_CURRENT, otherwise the same
 		// extras will be reused for every notification.
 		Notification safetyAppOnNotification = NotificationFactory
-				.pendingGuardianRequestNotification(context,
-						guardianModeDuration);
+				.pendingGuardianRequestNotification(context, g);
 		nManager.notify(GuardianModeActivity.GUARDIAN_MODE_NOTIFICATION_ID,
 				safetyAppOnNotification);
 
 		DialogManager dm = new DialogManager(context);
-		dm.spawnRequest(guardianModeDuration);
+		dm.spawnRequest(g);
 
 		// Check if there are any other guardian requests.
-		requests_left--;
 		this.setAlarm(context);
 	}
 }

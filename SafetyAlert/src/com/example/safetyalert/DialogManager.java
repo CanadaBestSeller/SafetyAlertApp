@@ -41,13 +41,13 @@ public class DialogManager {
 	// alert.show();
 	// }
 
-	public void spawnRequest(int guardianModeDuration) {
+	public void spawnRequest(GuardianRequest g) {
 
 		builder = new AlertDialog.Builder(context);
 		builder.setTitle("Guardian Request!");
 		builder.setIcon(R.drawable.ic_launcher);
 		builder.setMessage("Your friend would like you to be their guardian for "
-				+ Integer.toString(guardianModeDuration) + " minutes.");
+				+ Integer.toString(g.guardianshipDuration) + " minutes.\n" + g.toString());
 
 		builder.setPositiveButton("Accept",
 				new DialogInterface.OnClickListener() {

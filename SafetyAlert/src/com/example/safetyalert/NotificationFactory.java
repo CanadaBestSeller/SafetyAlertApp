@@ -28,11 +28,11 @@ public class NotificationFactory {
 		return notification;
 	}
 
-	public static Notification pendingGuardianRequestNotification(Context context, int duration) {
+	public static Notification pendingGuardianRequestNotification(Context context, GuardianRequest g) {
 		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
 				.setSmallIcon(R.drawable.ic_contact)
 				.setContentTitle("Pending Guardian Request!")
-				.setContentText("Duration: " + Integer.toString(duration) + " minutes. Tap here to accept.");
+				.setContentText("Duration: " + g.guardianshipDuration + " minutes. Tap here to accept.");
 
 		// User goes back to the screen when they click the notification
 		Intent toGuardianModeActivity = new Intent(context, GuardianModeActivity.class);
