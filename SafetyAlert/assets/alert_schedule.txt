@@ -1,11 +1,10 @@
 Mar 03 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time
 Mar 03 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time
-Mar 13 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time, SupTURK
 Mar 12 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time
 Mar 12 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time
 Mar 12 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time
 Mar 12 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time
-Mar 16 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time, WIN!
-Mar 13 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time
+
+Mar 13 2014 22:00, 45, 15, Dangerous area, Suddenly running, Night time
 Mar 13 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time
 Mar 13 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time

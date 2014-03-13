@@ -10,37 +10,41 @@ import android.content.Intent;
 import android.widget.Toast;
 
 public class GuardianModeAlarm extends BroadcastReceiver {
+	
+	public final static String EXTRA_GUARDIAN_MODE_DURATION = 
+			"com.example.safetyalert.EXTRA_GUARDIAN_MODE_DURATION";
 
 	private Context context;
 	private NotificationManager nManager;
 
-	private static int guardianModeDuration = 60;
 	private static int requests_left = 1;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		this.context = context;
-		nManager = (NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE);
-		initiateGuardianRequest();
+		nManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		int guardianModeDuration = intent.getIntExtra(EXTRA_GUARDIAN_MODE_DURATION, 0);
+		initiateGuardianRequest(guardianModeDuration);
 	}
 
 	public void setAlarm(Context context) {
-		if (requests_left > 0) {
+		GuardianRequest g;
+		if ((g = Utils.nextAlert(context)) != null) {
+
+			// set guardian mode details here
+			int guardianModeDuration = g.guardianshipDuration;
 
 			AlarmManager am = (AlarmManager) context
 					.getSystemService(Context.ALARM_SERVICE);
 			Intent i = new Intent(context, GuardianModeAlarm.class);
-			PendingIntent operation = PendingIntent.getBroadcast(context, 0, i,
-					0);
+			i.putExtra(EXTRA_GUARDIAN_MODE_DURATION, guardianModeDuration);
+			PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
 
 			Utils.appendToLog("Set guardianship request to trigger @ "
 					+ Utils.long2timestamp(System.currentTimeMillis()));
-			am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000,
+			am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 20000,
 					operation);
 
-			// set guardian mode details here
-			guardianModeDuration = 30;
 		}
 	}
 
@@ -52,7 +56,7 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 		am.cancel(pi);
 	}
 
-	private void initiateGuardianRequest() {
+	private void initiateGuardianRequest(int guardianModeDuration) {
 
 		Toast.makeText(context, Integer.toString(requests_left),
 				Toast.LENGTH_SHORT).show();

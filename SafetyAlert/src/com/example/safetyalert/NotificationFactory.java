@@ -32,7 +32,7 @@ public class NotificationFactory {
 		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
 				.setSmallIcon(R.drawable.ic_contact)
 				.setContentTitle("Pending Guardian Request!")
-				.setContentText("Guardian duration: " + Integer.toString(duration) + ". Tap here to accept.");
+				.setContentText("Duration: " + Integer.toString(duration) + " minutes. Tap here to accept.");
 
 		// User goes back to the screen when they click the notification
 		Intent toGuardianModeActivity = new Intent(context, GuardianModeActivity.class);
