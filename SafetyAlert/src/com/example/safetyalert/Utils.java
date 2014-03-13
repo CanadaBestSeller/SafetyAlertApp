@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.net.ParseException;
 import android.os.Environment;
 import android.text.format.DateFormat;
 
@@ -68,7 +68,7 @@ public class Utils {
 	}
 
 	// Returns the next alert
-	public static String nextAlert(Context context) {
+	public static GuardianRequest nextAlert(Context context) {
 		try {
 
 			AssetManager am = context.getAssets();
@@ -78,24 +78,44 @@ public class Utils {
 			// Example line
 			// "Mar 03 2014 22:00, 30, 15, Dangerous area, Suddenly running, Night time"
 			String line;
+			long nextAlertTime;
 			while ((line = reader.readLine()) != null) {
-				String [] parts = line.split("-");
-				SimpleDateFormat format = new SimpleDateFormat("MMM dd yyyy HH:mm");
-				try {
-					Date nextAlertDate = format.parse(parts[0]);
-					long nextAlertDateLong = nextAlertDate.getTime();
-					if (System.currentTimeMillis() < nextAlertDateLong) return line;
-				} catch (java.text.ParseException e) {
-			System.out.println("CAN'T PARSE. Check alert_schedule.txt SYNTAX!");
-					e.printStackTrace();
+				String[] parts = line.split(",");
+				if ((nextAlertTime = isFutureDate(parts[0])) != 0) {
+					String[] reasons = Arrays.copyOfRange(parts, 3,
+							parts.length);
+					return new GuardianRequest(nextAlertTime,
+							Integer.parseInt(parts[1].trim()),
+							Integer.parseInt(parts[2].trim()),
+							reasons);
 				}
 			}
 
 		} catch (IOException e) {
 			System.out.println("CAN'T OPEN ALERT SCHEDULE TEXT FILE!");
 			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			System.out.println("Check alert_schedule.txt SYNTAX!");
+			e.printStackTrace();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Check alert_schedule.txt SYNTAX!");
+			e.printStackTrace();
 		}
 
 		return null;
+	}
+
+	private static long isFutureDate(String dateString) {
+		SimpleDateFormat format = new SimpleDateFormat("MMM dd yyyy HH:mm");
+		try {
+			Date nextAlertDate = format.parse(dateString);
+			long nextAlertDateLong = nextAlertDate.getTime();
+			if (System.currentTimeMillis() < nextAlertDateLong)
+				return nextAlertDateLong;
+		} catch (java.text.ParseException e) {
+			System.out.println("CAN'T PARSE. Check alert_schedule.txt SYNTAX!");
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

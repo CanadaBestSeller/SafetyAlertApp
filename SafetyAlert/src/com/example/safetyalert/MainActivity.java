@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 		// This doesn't work the right way. When notification spawns an activity, uncheck still does nothing.
 		t.setChecked(safetyAppIsRunning());
 		t.setSelected(safetyAppIsRunning());
-		t.setTextOn(Utils.nextAlert(this));
+		t.setTextOn(Utils.nextAlert(this).toString());
 		t.invalidate(); // force re-draw of button
 	}
 
