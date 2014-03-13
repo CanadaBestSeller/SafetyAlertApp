@@ -20,18 +20,24 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		this.context = context;
-		nManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		nManager = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
 		initiateGuardianRequest();
 	}
 
 	public void setAlarm(Context context) {
 		if (requests_left > 0) {
-			
-			AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-			Intent i = new Intent(context, GuardianModeAlarm.class);
-			PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
 
-			am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, operation);
+			AlarmManager am = (AlarmManager) context
+					.getSystemService(Context.ALARM_SERVICE);
+			Intent i = new Intent(context, GuardianModeAlarm.class);
+			PendingIntent operation = PendingIntent.getBroadcast(context, 0, i,
+					0);
+
+			Utils.appendToLog("Set guardianship request to trigger @ "
+					+ Utils.long2timestamp(System.currentTimeMillis()));
+			am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000,
+					operation);
 
 			// set guardian mode details here
 			guardianModeDuration = 30;
@@ -48,12 +54,20 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 
 	private void initiateGuardianRequest() {
 
-		Toast.makeText(context, Integer.toString(requests_left), Toast.LENGTH_SHORT).show();
-		
+		Toast.makeText(context, Integer.toString(requests_left),
+				Toast.LENGTH_SHORT).show();
+		Utils.appendToLog("Guardianship request of duration "
+				+ guardianModeDuration + "mins triggered.");
+
 		// Spawn a notification, which will be canceled later
-		Notification safetyAppOnNotification = NotificationFactory.
-				pendingGuardianRequestNotification(context, guardianModeDuration);
-		nManager.notify(GuardianModeActivity.GUARDIAN_MODE_NOTIFICATION_ID, safetyAppOnNotification);
+		// If you use intent extras, remeber to call PendingIntent.getActivity()
+		// with the flag PendingIntent.FLAG_UPDATE_CURRENT, otherwise the same
+		// extras will be reused for every notification.
+		Notification safetyAppOnNotification = NotificationFactory
+				.pendingGuardianRequestNotification(context,
+						guardianModeDuration);
+		nManager.notify(GuardianModeActivity.GUARDIAN_MODE_NOTIFICATION_ID,
+				safetyAppOnNotification);
 
 		DialogManager dm = new DialogManager(context);
 		dm.spawnRequest(guardianModeDuration);

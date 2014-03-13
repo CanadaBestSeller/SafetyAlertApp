@@ -10,22 +10,22 @@ public class GuardianModeActivity extends Activity {
 	public static final int GUARDIAN_MODE_NOTIFICATION_ID = 1;
 
 	private NotificationManager nManager;
+	private int guardianModeDuration;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guardian_mode);
 		
-		guardianModeInit();
-	}
-
-	private void guardianModeInit() {
+		// TODO Set guardianModeDuration using putextra from intent/pendingIntent
+		//this.guardianModeDuration = intent
+		
 		Toast.makeText(this, getResources().getString(R.string.guardian_mode_on), Toast.LENGTH_LONG).show();
+		Utils.appendToLog("Guardianship request of duration " + guardianModeDuration + "mins ACCEPTED.");
 
 		// Cancel pending guardian mode notification
 		nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		nManager.cancel(GuardianModeActivity.GUARDIAN_MODE_NOTIFICATION_ID);
-
 	}
 
 //	public static boolean isOn = false;

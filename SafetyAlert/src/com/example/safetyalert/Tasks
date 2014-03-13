@@ -1,1 +1,2 @@
 A. GuardianModeActivity check elapsed time.
+Need to pass guardianship duration from notification to activity.

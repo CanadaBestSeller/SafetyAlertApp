@@ -28,7 +28,7 @@ public class SafetyAppService extends Service {
 			Toast.makeText(this, "THIS APP WON'T WORK WITHOUT EXTERNAL STORAGE!", Toast.LENGTH_LONG).show();
 		}
 
-		Utils.appendToLog("Started SafetyApp");
+		Utils.appendToLog("Activated SafetyApp");
 
 		Notification safetyAppOnNotification = NotificationFactory.safetyAppOnNotification(this);
 		notificationManager.notify(SAFETY_APP_NOTIFICATION_ID, safetyAppOnNotification);
@@ -42,7 +42,7 @@ public class SafetyAppService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Utils.appendToLog("Destroyed SafetyApp");
+		Utils.appendToLog("Deactivated SafetyApp");
 
 		notificationManager.cancel(SAFETY_APP_NOTIFICATION_ID);
 		toast(R.string.safety_app_off, Toast.LENGTH_SHORT);
