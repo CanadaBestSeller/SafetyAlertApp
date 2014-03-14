@@ -58,6 +58,19 @@ public class GuardianRequest implements Parcelable {
 
 		return sb.toString();
 	}
+	
+	public String getTriggerTimeAsString() {
+		return Utils.long2timestamp(triggerTime);
+	}
+
+	public String getReasonsAsString() {
+		StringBuilder sb = new StringBuilder();
+		for (String reason : reasons) {
+			sb.append(reason.trim());
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
 
 	@Override
 	public int describeContents() {

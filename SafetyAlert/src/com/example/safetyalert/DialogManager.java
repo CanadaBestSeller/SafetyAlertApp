@@ -21,7 +21,8 @@ public class DialogManager {
 		builder.setTitle("Guardian Request!");
 		builder.setIcon(R.drawable.ic_contact);
 		builder.setMessage("Your friend would like you to be their guardian for "
-				+ Integer.toString(g.guardianshipDuration) + " minutes.\n\n^ Check your notifications!");
+				+ Integer.toString(g.guardianshipDuration)
+				+ " minutes.\n\nRequest sent:\n" + Utils.long2timestamp(System.currentTimeMillis()));
 
 		builder.setPositiveButton("Accept",
 				new DialogInterface.OnClickListener() {
@@ -49,7 +50,9 @@ public class DialogManager {
 		builder = new AlertDialog.Builder(context);
 		builder.setTitle("Safety Alert!");
 		builder.setIcon(R.drawable.ic_danger);
-		builder.setMessage("Your friend is in danger! Please respond!");
+		builder.setMessage("Your friend is in danger!\n\nReasons:\n"
+				+ g.getReasonsAsString() + "\nAlert sent:\n"
+				+ Utils.long2timestamp(System.currentTimeMillis()));
 
 		builder.setPositiveButton("Respond",
 				new DialogInterface.OnClickListener() {
