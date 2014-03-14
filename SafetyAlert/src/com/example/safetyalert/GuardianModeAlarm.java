@@ -46,7 +46,7 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 	
 	public void setTestAlarm(Context context) {
 		String[] reasons = {"Just testing.", "No one is in danger."};
-		GuardianRequest g = new GuardianRequest(System.currentTimeMillis() + 5000, 2, 0, reasons);
+		GuardianRequest g = new GuardianRequest(System.currentTimeMillis() + 10000, 2, 0, reasons);
 
 		// set guardian mode details here
 		AlarmManager am = (AlarmManager) context .getSystemService(Context.ALARM_SERVICE);

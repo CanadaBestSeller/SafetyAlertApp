@@ -24,7 +24,14 @@ public class GuardianModeActivity extends Activity {
 		g = (GuardianRequest) data
 				.getParcelable(GuardianModeAlarm.EXTRA_GUARDIAN_REQUEST);
 		sorry = i.getBooleanExtra(TimeoutQuestionnaire.SORRY, false);
-		past = (System.currentTimeMillis() > (g.triggerTime + 15*60*1000))? true : false;
+		
+		// normal case
+		if (g.interval != 0) {
+			past = (System.currentTimeMillis() > (g.triggerTime + 15*60*1000))? true : false;
+		} else {
+			// test case
+			past = (System.currentTimeMillis() > (g.triggerTime + 10000))? true : false;
+		}
 
 		// If late acceptance, should only happen once
 		if (past && !sorry) {

@@ -44,8 +44,9 @@ public class AlertAlarm extends BroadcastReceiver {
 		i.putExtra(GuardianModeAlarm.EXTRA_GUARDIAN_REQUEST, g);
 		PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
 
+		// internal=>0 implies test value
 		long alertTriggerTime = (g.interval == 0) ?
-				System.currentTimeMillis() + 5000 : System.currentTimeMillis() + (g.interval*60*1000);
+				System.currentTimeMillis() + 10000 : System.currentTimeMillis() + (g.interval*60*1000);
 		Utils.appendToLog("[PREPARED ALERT] Will trigger on " + Utils.long2timestamp(alertTriggerTime));
 		am.set(AlarmManager.RTC_WAKEUP, alertTriggerTime, operation);
 	}
