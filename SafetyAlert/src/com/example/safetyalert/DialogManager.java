@@ -14,32 +14,6 @@ public class DialogManager {
 		this.context = context;
 	}
 
-	// public void spawnRequest1(int guardianModeDuration) {
-	//
-	// builder = new AlertDialog.Builder(context);
-	// builder.setTitle("Level 2 DANGER!");
-	// builder.setIcon(R.drawable.ic_launcher);
-	// builder.setMessage("Your friend is in level 2 danger!");
-	//
-	// builder.setPositiveButton("Respond", new
-	// DialogInterface.OnClickListener() {
-	// public void onClick(DialogInterface dialog, int whichButton) {
-	// //Do something
-	// dialog.dismiss();
-	// }
-	// });
-	// builder.setNegativeButton("Later", new DialogInterface.OnClickListener()
-	// {
-	// public void onClick(DialogInterface dialog, int whichButton) {
-	// dialog.dismiss();
-	// }
-	// });
-	//
-	// AlertDialog alert = builder.create();
-	// alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-	// alert.show();
-	// }
-
 	public void spawnRequest(final GuardianRequest g) {
 
 		builder = new AlertDialog.Builder(context);
@@ -55,23 +29,6 @@ public class DialogManager {
 					}
 		});
 
-//		builder.setPositiveButton("Accept",
-//				new DialogInterface.OnClickListener() {
-//					public void onClick(DialogInterface dialog, int whichButton) {
-//						Intent toGuardianModeActivity = new Intent(context, GuardianModeActivity.class);
-//						toGuardianModeActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//						toGuardianModeActivity.putExtra(GuardianModeAlarm.EXTRA_GUARDIAN_REQUEST, g);
-//
-//						context.startActivity(toGuardianModeActivity);
-//					}
-//				});
-//		builder.setNegativeButton("Later",
-//				new DialogInterface.OnClickListener() {
-//					public void onClick(DialogInterface dialog, int whichButton) {
-//						dialog.dismiss();
-//					}
-//				});
-
 		AlertDialog alert = builder.create();
 		alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 		alert.show();
@@ -80,7 +37,7 @@ public class DialogManager {
 	public void spawnAlert(final GuardianRequest g) {
 		builder = new AlertDialog.Builder(context);
 		builder.setTitle("Safety Alert!");
-		builder.setIcon(R.drawable.ic_contact);
+		builder.setIcon(R.drawable.ic_danger);
 		builder.setMessage("Your friend is in danger! Please respond!");
 
 		builder.setPositiveButton("Respond",
@@ -89,5 +46,9 @@ public class DialogManager {
 						dialog.dismiss();
 					}
 		});
+		
+		AlertDialog alert = builder.create();
+		alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+		alert.show();
 	}
 }

@@ -1,12 +1,11 @@
-A. GuardianModeActivity check elapsed time.
 Spawns an activity question which has the parent of guardian mode
 
 Enable progress bar after guardian mode is on.
 
-Fix line breaks in logs where appropriate
-
 Make main button dynamic
 
-Dialog doens't spawn for alert.
-Pending alert doesn't go away.
 deactivating SafetyAppService doesn't cancel all the notifications
+
+Deactivate AlertResponseActivity, spawn questionnaire
+
+Timeout questionnaire

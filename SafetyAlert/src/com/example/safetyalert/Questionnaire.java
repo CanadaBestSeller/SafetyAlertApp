@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.view.View;
 
 public class Questionnaire extends Activity {
 
@@ -43,4 +44,7 @@ public class Questionnaire extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	public void saveQuestionnaire(View view) {
+		
+	}
 }

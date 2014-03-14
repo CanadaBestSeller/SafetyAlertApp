@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,10 +10,20 @@
     tools:context=".DisplayTriggerDetailsActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/alert_response_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thanks for responding to the alert!"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:onClick="toQuestionnaire"
+        android:text="Continue" />
+
+</RelativeLayout>
