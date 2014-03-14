@@ -42,7 +42,41 @@ public class NotificationFactory {
 		ncb.setContentIntent(p);
 
 		Notification notification = ncb.build();
+		notification.flags |= Notification.FLAG_ONGOING_EVENT;
 
 		return notification;
+	}
+
+	public static Notification progressUpdateNotification(Context context, int progress, int outOf) {
+		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
+				.setSmallIcon(R.drawable.ic_launcher)
+				.setContentTitle("Guardian Mode is ON.")
+				.setContentText("Running in the background.")
+				.setProgress(outOf, progress, false);
+		
+		Notification notification = ncb.build();
+		notification.flags |= Notification.FLAG_ONGOING_EVENT;
+		
+		return notification;
+	 }
+
+	public static Notification pendingAlertNotification(Context context, GuardianRequest g) {
+		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
+		.setSmallIcon(R.drawable.ic_contact)
+		.setContentTitle("Pending Alert!")
+		.setContentText("Your friend is in danger! Tap here to respond.");
+
+        // User goes back to the screen when they click the notification
+        Intent toAlertResponseActivity = new Intent(context, AlertResponseActivity.class);
+        toAlertResponseActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        toAlertResponseActivity.putExtra(GuardianModeAlarm.EXTRA_GUARDIAN_REQUEST, g);
+
+        PendingIntent p = PendingIntent.getActivity(context, 0, toAlertResponseActivity, PendingIntent.FLAG_UPDATE_CURRENT);
+        ncb.setContentIntent(p);
+
+        Notification notification = ncb.build();
+        notification.flags |= Notification.FLAG_ONGOING_EVENT;
+
+        return notification;
 	}
 }

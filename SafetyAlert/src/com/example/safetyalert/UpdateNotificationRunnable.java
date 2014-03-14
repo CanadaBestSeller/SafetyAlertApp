@@ -17,9 +17,9 @@ public class UpdateNotificationRunnable implements Runnable {
 
 	public NotificationCompat.Builder ncb;
 	public NotificationManager nm;
-	public MainActivity m;
+	public GuardianModeActivity m;
 
-	public UpdateNotificationRunnable(MainActivity m, NotificationCompat.Builder ncb, NotificationManager nm, int notificationid, int minutes) {
+	public UpdateNotificationRunnable(GuardianModeActivity m, NotificationCompat.Builder ncb, NotificationManager nm, int notificationid, int minutes) {
 		this.ncb = ncb;
 		this.nm = nm;
 		this.m = m;

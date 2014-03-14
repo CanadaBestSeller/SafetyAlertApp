@@ -37,6 +37,11 @@
 
         <receiver 
             android:process=":remote" 
+            android:name=".AlertAlarm">
+        </receiver>
+
+        <receiver 
+            android:process=":remote" 
             android:name=".GuardianModeAlarm">
         </receiver>
 
@@ -50,6 +55,11 @@
         </activity>
         
         
+        <activity
+            android:name="com.example.safetyalert.AlertResponseActivity"
+            android:label="Guardian Mode" >
+        </activity>
+
         <activity
             android:name="com.example.safetyalert.GuardianModeActivity"
             android:label="Guardian Mode" >

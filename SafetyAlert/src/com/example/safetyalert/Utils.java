@@ -45,7 +45,7 @@ public class Utils {
 
 			try {
 				FileWriter f = new FileWriter(myDir + "/" + logName, true);
-				f.write("\n\n---\n\n\n");
+				f.write("---\n\n");
 				f.flush();
 				f.close();
 			} catch (Exception e) {
@@ -53,6 +53,26 @@ public class Utils {
 			}
 		}
 	}
+
+	public static void lineBreakLogStrong() {
+		if (isExternalStorageWritable()) {
+			String root = Environment.getExternalStorageDirectory().toString();
+			File myDir = new File(root + "/SafetyAlert");
+			myDir.mkdirs();
+
+			String logName = "activity_log.txt";
+
+			try {
+				FileWriter f = new FileWriter(myDir + "/" + logName, true);
+				f.write("*****\n*****\n\n");
+				f.flush();
+				f.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public static void appendToLog(String message) {
 
 		if (isExternalStorageWritable()) {

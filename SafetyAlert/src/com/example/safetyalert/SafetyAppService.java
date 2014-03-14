@@ -29,11 +29,12 @@ public class SafetyAppService extends Service {
 			Toast.makeText(this, "THIS APP WON'T WORK WITHOUT EXTERNAL STORAGE!", Toast.LENGTH_LONG).show();
 		}
 
-		Utils.appendToLog("Activated SafetyApp");
+		Utils.lineBreakLogStrong();
+		Utils.appendToLog("[ACTIVATED APP]");
 
 		Notification safetyAppOnNotification = NotificationFactory.safetyAppOnNotification(this);
 		notificationManager.notify(SAFETY_APP_NOTIFICATION_ID, safetyAppOnNotification);
-		toast(R.string.safety_app_on, Toast.LENGTH_SHORT);
+		//toast(R.string.safety_app_on, Toast.LENGTH_SHORT);
 
 		test = intent.getBooleanExtra(MainActivity.EXTRA_TEST_BOOLEAN, false);
 
@@ -50,9 +51,13 @@ public class SafetyAppService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Utils.appendToLog("Deactivated SafetyApp. All scheduled guardian requests / triggers are CANCELED.\n*****\n");
+		Utils.appendToLog("[DEACTIVATED APP] All scheduled guardian requests/alerts are CANCELED.");
+		Utils.lineBreakLogStrong();
 
 		notificationManager.cancel(SAFETY_APP_NOTIFICATION_ID);
+		notificationManager.cancel(GuardianModeActivity.GUARDIAN_MODE_NOTIFICATION_ID);
+		notificationManager.cancel(AlertAlarm.ALERT_NOTIFICATION_ID);
+
 		toast(R.string.safety_app_off, Toast.LENGTH_SHORT);
 		guardianModeAlarm.cancelAlarm(this);
 	}

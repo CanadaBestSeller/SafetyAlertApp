@@ -38,18 +38,15 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 			i.putExtra(EXTRA_GUARDIAN_REQUEST, g);
 			PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
 
-			Utils.lineBreakLog();
-			Utils.appendToLog("Set guardianship request to trigger on "
+			Utils.appendToLog("[PREPARED GUARDIAN REQUEST] Will trigger on "
 					+ Utils.long2timestamp(g.triggerTime));
 			am.set(AlarmManager.RTC_WAKEUP, g.triggerTime, operation);
 		}
 	}
 	
-	// THIS IS MOST LIKELY THE CULPRIT
-	// TEST DOESN'T ACTUALLY DO ANYTHING.
 	public void setTestAlarm(Context context) {
 		String[] reasons = {"Just testing.", "No one is in danger."};
-		GuardianRequest g = new GuardianRequest(System.currentTimeMillis() + 5000, 2, 1, reasons);
+		GuardianRequest g = new GuardianRequest(System.currentTimeMillis() + 5000, 2, 0, reasons);
 
 		// set guardian mode details here
 		AlarmManager am = (AlarmManager) context .getSystemService(Context.ALARM_SERVICE);
@@ -58,8 +55,7 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 		i.putExtra(EXTRA_GUARDIAN_REQUEST, g);
 		PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
 
-		Utils.lineBreakLog();
-		Utils.appendToLog("Set TEST guardianship request to trigger on "
+		Utils.appendToLog("[PREPARED TEST GUARDIAN REQUEST] Will trigger on "
 				+ Utils.long2timestamp(g.triggerTime));
 		am.set(AlarmManager.RTC_WAKEUP, g.triggerTime, operation);
 	}
@@ -74,9 +70,9 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 
 	private void initiateGuardianRequest(GuardianRequest g) {
 
-		//Toast.makeText(context, Integer.toString(requests_left), Toast.LENGTH_SHORT).show();
-		Utils.appendToLog("Guardianship request of duration "
-				+ g.guardianshipDuration + "mins triggered.");
+		Utils.lineBreakLog();
+		Utils.appendToLog("[GUARDIAN REQUEST] Duration: "
+				+ g.guardianshipDuration + "mins.");
 
 		Notification safetyAppOnNotification = NotificationFactory
 				.pendingGuardianRequestNotification(context, g);

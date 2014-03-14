@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">SafetyAlert</string>
-    <string name="action_settings">Test request</string>
+    <string name="action_settings">Test</string>
     
     <string name="activation">Activation</string>
     <string name="alert_on">Safety Alert Activated!</string>
@@ -20,5 +20,7 @@
 
     <string name="guardian_mode_on">Guardian mode ON. You might get alerts from your friend!</string>
     <string name="guardian_mode_off">Guardian mode finished. Thanks for helping out your friend!</string>
+
+    <string name="progress_update_service_name">Progress Update Service</string>
 
 </resources>
