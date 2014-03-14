@@ -10,12 +10,12 @@
     tools:context=".DisplayTriggerDetailsActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/guardian_feedback_briefing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Thanks for responding to the guardian request!"
+        android:text="Thanks for responding to the guardian request!\n\nFeel free to provide feedback! (optional)\n"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
@@ -26,6 +26,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:onClick="quit"
-        android:text="Done" />
+        android:text="Continue" />
+
+    <EditText
+        android:id="@+id/guardian_mode_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/guardian_feedback_briefing"
+        android:ems="10" />
 
 </RelativeLayout>
