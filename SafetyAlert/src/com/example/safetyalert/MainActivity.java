@@ -19,21 +19,8 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		safetyAppIntent = new Intent(this, SafetyAppService.class);
-
 		setContentView(R.layout.activity_main);
-
-		// Too much work to use a static layout XML
-		// TODO Take out all the static buttons and render just the toggle programmatically
-		ToggleButton t = (ToggleButton) findViewById(R.id.activation_toggle);
-
-		// Need to change both the visual as well as the actual value
-		// This doesn't work the right way. When notification spawns an activity, uncheck still does nothing.
-		t.setChecked(safetyAppIsRunning());
-		t.setSelected(safetyAppIsRunning());
-
-		t.invalidate(); // force re-draw of button
 	}
 
 	@Override
@@ -56,9 +43,9 @@ public class MainActivity extends Activity {
 	}
 
 	private void addTestEntry() {
-		deactivateSafetyApp();
+		stopService(safetyAppIntent);
 		safetyAppIntent.putExtra(EXTRA_TEST_BOOLEAN, true);
-		activateSafetyApp();
+		startService(safetyAppIntent);
 	}
 
 	@Override
@@ -66,14 +53,8 @@ public class MainActivity extends Activity {
 		super.onDestroy();
 	}
 
-	public void activationClicked(View view) {
-		// TODO This is not working properly, when the button is unchecked, nothing happens.
-		if (((ToggleButton) view).isChecked()) activateSafetyApp();
-		else deactivateSafetyApp();
-	}
-
 	public void questionnaire(View view) {
-		Intent toQuestionnaire = new Intent(this, Questionnaire.class);
+		Intent toQuestionnaire = new Intent(this, TimeoutQuestionnaire.class);
 		startActivity(toQuestionnaire);
 	}
 
@@ -81,11 +62,11 @@ public class MainActivity extends Activity {
 		Intent toSecondary = new Intent(this, DisplayTriggerDetailsActivity.class);
 		startActivity(toSecondary);
 	}
-	private void activateSafetyApp() {
+	public void activateSafetyApp(View view) {
 		startService(safetyAppIntent);
 	}
 
-	private void deactivateSafetyApp() {
+	public void deactivateSafetyApp(View view) {
 		stopService(safetyAppIntent);
 	}
 

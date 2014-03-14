@@ -61,6 +61,11 @@
         </activity>
 
         <activity
+            android:name="com.example.safetyalert.TimeoutQuestionnaire"
+            android:label="Guardian Mode Delayed" >
+        </activity>
+
+        <activity
             android:name="com.example.safetyalert.GuardianModeActivity"
             android:label="Guardian Mode" >
         </activity>

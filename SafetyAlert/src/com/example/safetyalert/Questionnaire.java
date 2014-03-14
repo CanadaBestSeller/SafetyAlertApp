@@ -1,12 +1,14 @@
 package com.example.safetyalert;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class Questionnaire extends Activity {
 
@@ -15,16 +17,6 @@ public class Questionnaire extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_questionnaire);
-	}
-
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void setupActionBar() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
-		}
 	}
 
 	@Override
@@ -45,6 +37,23 @@ public class Questionnaire extends Activity {
 	}
 
 	public void saveQuestionnaire(View view) {
+		RadioGroup rg = (RadioGroup) findViewById(R.id.danger_level_radio_group);
 		
+		int id = rg.getCheckedRadioButtonId();
+		View radioButton = rg.findViewById(id);
+		int radioId = rg.indexOfChild(radioButton);
+
+		RadioButton btn = (RadioButton) rg.getChildAt(radioId);
+		String radioSelection = (String) btn.getText();
+		
+		EditText et = (EditText) findViewById(R.id.questionnaire_body);
+		String bodySelection = et.getText().toString();
+
+		Utils.appendToLog("[QUESTIONNAIRE DANGER LEVEL] " + radioSelection);
+		Utils.appendToLog("[QUESTIONNAIRE JUSTIFICATION] " + bodySelection);
+		
+		Toast.makeText(this, "Thank you!", Toast.LENGTH_SHORT).show();
+		
+		finish();
 	}
 }

@@ -62,7 +62,7 @@ public class NotificationFactory {
 
 	public static Notification pendingAlertNotification(Context context, GuardianRequest g) {
 		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
-		.setSmallIcon(R.drawable.ic_contact)
+		.setSmallIcon(R.drawable.ic_danger)
 		.setContentTitle("Pending Alert!")
 		.setContentText("Your friend is in danger! Tap here to respond.");
 

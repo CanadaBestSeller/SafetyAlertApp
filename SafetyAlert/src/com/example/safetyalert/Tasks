@@ -1,11 +1,5 @@
-Spawns an activity question which has the parent of guardian mode
-
 Enable progress bar after guardian mode is on.
-
-Make main button dynamic
 
 deactivating SafetyAppService doesn't cancel all the notifications
 
-Deactivate AlertResponseActivity, spawn questionnaire
-
-Timeout questionnaire
+Nothing happens when guardian expires
