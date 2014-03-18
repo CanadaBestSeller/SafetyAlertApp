@@ -1,16 +1,18 @@
-Enable progress bar after guardian mode is on.
+In order or priority:
+===
+Notifications don't spawn activities
 
-deactivating SafetyAppService doesn't cancel all the notifications
+Need to reformat alert response activity to correspond to MS IV.
+
+Crop map to half height & half width.
+
+Test should destroy MainActivity and make informative toast.
+
+Enable progress bar after guardian mode is on.
 
 Nothing happens when guardian expires
 
 enter auto focus
-
-Need to reformat alert response activity.
-
-Deactivate button doesn't work completely - Needs to be activated first in order to cancel notification.
-
-Crop map to half height & half width.
 
 ***Questions for team mates:
 What should the map display?
