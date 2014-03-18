@@ -66,6 +66,7 @@ public class MainActivity extends Activity {
 	public void activateSafetyApp(View view) {
 		Toast.makeText(this, getResources().getString(R.string.safety_app_on), Toast.LENGTH_SHORT).show();
 		startService(safetyAppIntent);
+		finish();
 	}
 
 	public void deactivateSafetyApp(View view) {

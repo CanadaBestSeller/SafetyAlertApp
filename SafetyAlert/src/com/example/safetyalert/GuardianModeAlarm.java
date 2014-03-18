@@ -73,6 +73,8 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 	private void initiateGuardianRequest(GuardianRequest g) {
 
 		Utils.lineBreakLog();
+		// Problematic line
+		// Has something to do with test boolean
 		Utils.appendToLog("[GUARDIAN REQUEST] Duration: "
 				+ g.guardianshipDuration + "mins.");
 
