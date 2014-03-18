@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Thanks for responding to the guardian request!\n\nFeel free to provide feedback! (optional)\n"
+        android:text="Thanks for responding to the guardian request!\n\nPlease press 'Continue'.\n\nFeel free to provide feedback! (optional)\n"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button

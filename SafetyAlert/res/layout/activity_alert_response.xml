@@ -26,4 +26,13 @@
         android:onClick="toQuestionnaire"
         android:text="Continue" />
 
+    <ImageView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/alert_response_body"
+        android:src="@android:drawable/editbox_dropdown_dark_frame" />
+
 </RelativeLayout>

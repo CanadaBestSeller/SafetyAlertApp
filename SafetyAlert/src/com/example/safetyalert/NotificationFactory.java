@@ -4,9 +4,23 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
 
 public class NotificationFactory {
+
+	private static void setSound(Builder ncb) {
+		Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+		ncb.setSound(alarmSound);
+	}
+	
+	private static void setVibrate(Builder ncb) {
+		long[] pattern = {0, 100, 1000};
+		ncb.setVibrate(pattern);
+	}
 
 	public static Notification safetyAppOnNotification(Context context) {
 		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
@@ -38,27 +52,16 @@ public class NotificationFactory {
 		Intent toGuardianModeActivity = new Intent(context, GuardianModeActivity.class);
 		toGuardianModeActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		toGuardianModeActivity.putExtra(GuardianModeAlarm.EXTRA_GUARDIAN_REQUEST, g);
+
 		PendingIntent p = PendingIntent.getActivity(context, 0, toGuardianModeActivity, PendingIntent.FLAG_UPDATE_CURRENT);
 		ncb.setContentIntent(p);
+		ncb.setDefaults(Notification.DEFAULT_ALL);
 
 		Notification notification = ncb.build();
 		notification.flags |= Notification.FLAG_ONGOING_EVENT;
 
 		return notification;
 	}
-
-	public static Notification progressUpdateNotification(Context context, int progress, int outOf) {
-		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
-				.setSmallIcon(R.drawable.ic_launcher)
-				.setContentTitle("Guardian Mode is ON.")
-				.setContentText("Running in the background.")
-				.setProgress(outOf, progress, false);
-		
-		Notification notification = ncb.build();
-		notification.flags |= Notification.FLAG_ONGOING_EVENT;
-		
-		return notification;
-	 }
 
 	public static Notification pendingAlertNotification(Context context, GuardianRequest g) {
 		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
@@ -73,10 +76,24 @@ public class NotificationFactory {
 
         PendingIntent p = PendingIntent.getActivity(context, 0, toAlertResponseActivity, PendingIntent.FLAG_UPDATE_CURRENT);
         ncb.setContentIntent(p);
+		ncb.setDefaults(Notification.DEFAULT_ALL);
 
         Notification notification = ncb.build();
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
 
         return notification;
 	}
+
+	public static Notification progressUpdateNotification(Context context, int progress, int outOf) {
+		NotificationCompat.Builder ncb = new NotificationCompat.Builder(context)
+				.setSmallIcon(R.drawable.ic_launcher)
+				.setContentTitle("Guardian Mode is ON.")
+				.setContentText("Running in the background.")
+				.setProgress(outOf, progress, false);
+		
+		Notification notification = ncb.build();
+		notification.flags |= Notification.FLAG_ONGOING_EVENT;
+		
+		return notification;
+	 }
 }

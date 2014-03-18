@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class AlertResponseActivity extends Activity {
@@ -23,7 +24,10 @@ public class AlertResponseActivity extends Activity {
 		setContentView(R.layout.activity_alert_response);
 
 		TextView t = (TextView)findViewById(R.id.alert_response_body);
-		t.append(g.toString());
+		t.append(g.getReasonsAsString());
+
+		ImageView map = (ImageView) findViewById(R.id.map);
+		map.setImageBitmap(Utils.int2png(this, g.mapNumber));
 
 		nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		nManager.cancel(AlertAlarm.ALERT_NOTIFICATION_ID);

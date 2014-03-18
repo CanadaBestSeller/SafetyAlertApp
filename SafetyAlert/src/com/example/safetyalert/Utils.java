@@ -13,6 +13,8 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.text.format.DateFormat;
 
@@ -118,14 +120,20 @@ public class Utils {
 			String line;
 			long nextAlertTime;
 			while ((line = reader.readLine()) != null) {
-				String[] parts = line.split(",");
-				if ((nextAlertTime = isFutureDate(parts[0])) != 0) {
-					String[] reasons = Arrays.copyOfRange(parts, 3,
-							parts.length);
-					return new GuardianRequest(nextAlertTime,
-							Integer.parseInt(parts[1].trim()),
-							Integer.parseInt(parts[2].trim()),
-							reasons);
+				// If not preceded by double slash
+				// AND line is not empty
+				if (!line.startsWith("//") && !line.trim().isEmpty()) {
+
+					String[] parts = line.split(",");
+					
+					// If date is in the future
+					if ((nextAlertTime = isFutureDate(parts[0])) != 0) {
+						String[] reasons = Arrays.copyOfRange(parts, 4, parts.length);
+						return new GuardianRequest(nextAlertTime,
+								Integer.parseInt(parts[1].trim()),
+								Integer.parseInt(parts[2].trim()),
+								Integer.parseInt(parts[3].trim()), reasons);
+					}
 				}
 			}
 
@@ -155,5 +163,35 @@ public class Utils {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	public static Bitmap int2png(Context context, int mapNumber) {
+		String mapName;
+
+		// Find out which map
+		switch (mapNumber) {
+		case 1:
+			mapName = "1_bus_loop.png";
+			break;
+		case 2:
+			mapName = "2_pacific_spirit.png";
+			break;
+		default:
+			mapName = "0_test.png";
+			break;
+		}
+		
+		AssetManager assetManager = context.getAssets();
+
+	    InputStream istr;
+	    Bitmap bitmap = null;
+	    try {
+	        istr = assetManager.open(mapName);
+	        bitmap = BitmapFactory.decodeStream(istr);
+	    } catch (IOException e) {
+	        return null;
+	    }
+
+	    return bitmap;
 	}
 }

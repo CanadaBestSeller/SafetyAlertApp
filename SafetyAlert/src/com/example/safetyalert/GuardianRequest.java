@@ -8,6 +8,7 @@ public class GuardianRequest implements Parcelable {
 	public long triggerTime;
 	public int guardianshipDuration;
 	public int interval;
+	public int mapNumber;
 	public String[] reasons;
 
 	public static final Parcelable.Creator<GuardianRequest> CREATOR = new Parcelable.Creator<GuardianRequest>() {
@@ -21,10 +22,11 @@ public class GuardianRequest implements Parcelable {
 	};
 
 	public GuardianRequest(long triggerTime, int guardianshipDuration,
-			int interval, String[] reasons) {
+			int interval, int mapNumber, String[] reasons) {
 		this.triggerTime = triggerTime;
 		this.guardianshipDuration = guardianshipDuration;
 		this.interval = interval;
+		this.mapNumber = mapNumber;
 		this.reasons = reasons;
 	}
 
@@ -32,6 +34,7 @@ public class GuardianRequest implements Parcelable {
 		triggerTime = source.readLong();
 		guardianshipDuration = source.readInt();
 		interval = source.readInt();
+		mapNumber = source.readInt();
 		reasons = source.createStringArray();
 	}
 
@@ -40,6 +43,7 @@ public class GuardianRequest implements Parcelable {
 		dest.writeLong(triggerTime);
 		dest.writeInt(guardianshipDuration);
 		dest.writeInt(interval);
+		dest.writeInt(mapNumber);
 		dest.writeStringArray(reasons);
 	}
 
@@ -64,9 +68,9 @@ public class GuardianRequest implements Parcelable {
 	}
 
 	public String getReasonsAsString() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder("Reasons:\n");
 		for (String reason : reasons) {
-			sb.append(reason.trim());
+			sb.append("- " + reason.trim());
 			sb.append("\n");
 		}
 		return sb.toString();

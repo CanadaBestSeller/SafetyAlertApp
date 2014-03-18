@@ -41,12 +41,14 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 			Utils.appendToLog("[PREPARED GUARDIAN REQUEST] Will trigger on "
 					+ Utils.long2timestamp(g.triggerTime));
 			am.set(AlarmManager.RTC_WAKEUP, g.triggerTime, operation);
+		} else {
+			Utils.appendToLog("[NO MORE GUARDIAN REQUEST ON QUEUE]");
 		}
 	}
 	
 	public void setTestAlarm(Context context) {
 		String[] reasons = {"Just testing.", "No one is in danger."};
-		GuardianRequest g = new GuardianRequest(System.currentTimeMillis() + 10000, 2, 0, reasons);
+		GuardianRequest g = new GuardianRequest(System.currentTimeMillis() + 10000, 2, 0, 0, reasons);
 
 		// set guardian mode details here
 		AlarmManager am = (AlarmManager) context .getSystemService(Context.ALARM_SERVICE);
