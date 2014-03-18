@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ToggleButton;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void addTestEntry() {
+		Toast.makeText(this, "Activated test mode!", Toast.LENGTH_SHORT).show();
 		stopService(safetyAppIntent);
 		safetyAppIntent.putExtra(EXTRA_TEST_BOOLEAN, true);
 		startService(safetyAppIntent);
@@ -63,10 +64,12 @@ public class MainActivity extends Activity {
 		startActivity(toSecondary);
 	}
 	public void activateSafetyApp(View view) {
+		Toast.makeText(this, getResources().getString(R.string.safety_app_on), Toast.LENGTH_SHORT).show();
 		startService(safetyAppIntent);
 	}
 
 	public void deactivateSafetyApp(View view) {
+		startService(safetyAppIntent);
 		stopService(safetyAppIntent);
 	}
 

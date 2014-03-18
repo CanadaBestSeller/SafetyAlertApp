@@ -34,7 +34,6 @@ public class SafetyAppService extends Service {
 
 		Notification safetyAppOnNotification = NotificationFactory.safetyAppOnNotification(this);
 		notificationManager.notify(SAFETY_APP_NOTIFICATION_ID, safetyAppOnNotification);
-		toast(R.string.safety_app_on, Toast.LENGTH_SHORT);
 
 		test = intent.getBooleanExtra(MainActivity.EXTRA_TEST_BOOLEAN, false);
 
