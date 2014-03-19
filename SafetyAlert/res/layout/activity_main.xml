@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Welcome to Safety App!\n\nOnce you Activate the app, there will be a notification.\n\nFeel free to exit the app after activation." />
 
     <LinearLayout

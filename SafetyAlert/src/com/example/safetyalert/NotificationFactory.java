@@ -9,6 +9,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
+import android.widget.Toast;
 
 public class NotificationFactory {
 
@@ -53,7 +54,8 @@ public class NotificationFactory {
 		toGuardianModeActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		toGuardianModeActivity.putExtra(GuardianModeAlarm.EXTRA_GUARDIAN_REQUEST, g);
 
-		PendingIntent p = PendingIntent.getActivity(context, 0, toGuardianModeActivity, PendingIntent.FLAG_UPDATE_CURRENT);
+		Toast.makeText(context, "CHANGING FLAGS...", Toast.LENGTH_SHORT).show();
+		PendingIntent p = PendingIntent.getActivity(context, 0, toGuardianModeActivity, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT);
 		ncb.setContentIntent(p);
 		ncb.setDefaults(Notification.DEFAULT_ALL);
 
@@ -74,7 +76,7 @@ public class NotificationFactory {
         toAlertResponseActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         toAlertResponseActivity.putExtra(GuardianModeAlarm.EXTRA_GUARDIAN_REQUEST, g);
 
-        PendingIntent p = PendingIntent.getActivity(context, 0, toAlertResponseActivity, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent p = PendingIntent.getActivity(context, 0, toAlertResponseActivity, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT);
         ncb.setContentIntent(p);
 		ncb.setDefaults(Notification.DEFAULT_ALL);
 

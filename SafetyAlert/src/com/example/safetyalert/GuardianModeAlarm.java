@@ -36,7 +36,7 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 
 			Intent i = new Intent(context, GuardianModeAlarm.class);
 			i.putExtra(EXTRA_GUARDIAN_REQUEST, g);
-			PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
+			PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
 			Utils.appendToLog("[PREPARED GUARDIAN REQUEST] Will trigger on "
 					+ Utils.long2timestamp(g.triggerTime));
@@ -55,7 +55,7 @@ public class GuardianModeAlarm extends BroadcastReceiver {
 
 		Intent i = new Intent(context, GuardianModeAlarm.class);
 		i.putExtra(EXTRA_GUARDIAN_REQUEST, g);
-		PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, 0);
+		PendingIntent operation = PendingIntent.getBroadcast(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		Utils.appendToLog("[PREPARED TEST GUARDIAN REQUEST] Will trigger on "
 				+ Utils.long2timestamp(g.triggerTime));

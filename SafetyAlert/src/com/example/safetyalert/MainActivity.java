@@ -43,10 +43,11 @@ public class MainActivity extends Activity {
 	}
 
 	private void addTestEntry() {
-		Toast.makeText(this, "Activated test mode!", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Activated test mode! Guardian Request in 10 seconds.", Toast.LENGTH_LONG).show();
 		stopService(safetyAppIntent);
 		safetyAppIntent.putExtra(EXTRA_TEST_BOOLEAN, true);
 		startService(safetyAppIntent);
+		finish();
 	}
 
 	@Override
@@ -54,15 +55,6 @@ public class MainActivity extends Activity {
 		super.onDestroy();
 	}
 
-	public void questionnaire(View view) {
-		Intent toQuestionnaire = new Intent(this, TimeoutQuestionnaire.class);
-		startActivity(toQuestionnaire);
-	}
-
-	public void trigger(View view) {
-		Intent toSecondary = new Intent(this, DisplayTriggerDetailsActivity.class);
-		startActivity(toSecondary);
-	}
 	public void activateSafetyApp(View view) {
 		Toast.makeText(this, getResources().getString(R.string.safety_app_on), Toast.LENGTH_SHORT).show();
 		startService(safetyAppIntent);

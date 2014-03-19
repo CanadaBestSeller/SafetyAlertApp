@@ -6,8 +6,6 @@ Need to reformat alert response activity to correspond to MS IV.
 
 Crop map to half height & half width.
 
-Test should destroy MainActivity and make informative toast.
-
 Enable progress bar after guardian mode is on.
 
 Nothing happens when guardian expires
