@@ -45,7 +45,6 @@ public class AlertResponseActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if (requestCode == 0) {
 	         if (resultCode == RESULT_OK) {
-	        	Toast.makeText(this, "FINISHED!", Toast.LENGTH_SHORT).show();
 	            this.finish();
 	         }
 	     }

@@ -2,8 +2,6 @@ package com.example.safetyalert;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -38,6 +36,8 @@ public class Questionnaire extends Activity {
 		Toast.makeText(this, "Thank you!", Toast.LENGTH_SHORT).show();
 		
 		setResult(RESULT_OK, null);
+		new GuardianModeAlarm().setAlarm(this);
+		
 		finish();
 	}
 }

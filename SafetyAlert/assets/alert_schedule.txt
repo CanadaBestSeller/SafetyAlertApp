@@ -12,3 +12,4 @@ Mar 19 2014 08:00, 20, 15, 1, Electrocuted, Suddenly running, Night time
 Mar 19 2014 10:00, 20, 15, 1, Heart attack, Suddenly running, Night time
 Mar 19 2014 12:00, 60, 55, 2, Shot by stranger, Suddenly running, Night time
 Mar 19 2014 14:00, 30, 2, 1, Murdered, Suddenly running, Night time
+Mar 19 2014 14:44, 30, 2, 1, Food poison, Suddenly running, Night time
