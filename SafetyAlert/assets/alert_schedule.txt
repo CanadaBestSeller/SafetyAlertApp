@@ -1,7 +1,7 @@
 // Double slash for comments
 // Empty lines are also okay
 // Please follow this formatting:
-// MMM DD YYYY HH:MM, Guardian Request Duration, Interval after Request to trigger safety alert, 
+// MMM DD YYYY HH:MM, Guardian Request Duration (minutes), Interval after Request to trigger safety alert (15minutes), 
 // map number (1=bus, 2=pacific), reason1, reason2, reason3, reasons...
 
 Mar 18 2014 19:00, 30, 15, 2, Ran over by a train, Suddenly running, Night time
