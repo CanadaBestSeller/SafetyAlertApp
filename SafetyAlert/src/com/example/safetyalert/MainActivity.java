@@ -67,6 +67,7 @@ public class MainActivity extends Activity {
 		Toast.makeText(this, getResources().getString(R.string.safety_app_off), Toast.LENGTH_SHORT).show();
 	}
 
+	@SuppressWarnings("unused")
 	private boolean safetyAppIsRunning() {
 		ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 		for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
