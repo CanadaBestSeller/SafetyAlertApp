@@ -1,13 +1,13 @@
 // Double slash for comments
 // Empty lines are also okay
 // Please follow this formatting:
-// MMM DD YYYY HH:MM, Guardian Request Duration, Interval after Request to trigger safety alert, 
+// MMM DD YYYY HH:MM, Guardian Request Duration (minutes), Interval after Request to trigger safety alert (15minutes), 
 // map number (1=bus, 2=pacific), reason1, reason2, reason3, reasons...
 
-Mar 18 2014 12:00, 30, 15, 2, Dangerous area, Suddenly running, Night time
-Mar 18 2014 16:00, 15, 15, 1, Dangerous area, Suddenly running, Night time
-Mar 18 2014 22:00, 45, 5, 2, Dangerous area, Suddenly running, Night time
+Mar 18 2014 12:00, 60, 10, 1, UBC Bus loop, Suddenly running, Day time
+Mar 18 2014 16:00, 18, 15, 2, Pacific Spirit Park, Suddenly fell, Night time
+Mar 18 2014 22:00, 60, 30, 2, Pacific Spirit Park, Suddenly fell, Day time
 
-Mar 19 2014 12:00, 20, 15, 1, Dangerous area, Suddenly running, Night time
-Mar 19 2014 16:00, 60, 55, 2, Dangerous area, Suddenly running, Night time
-Mar 19 2014 22:00, 30, 2, 1, Dangerous area, Suddenly running, Night time
+Mar 19 2014 12:00, 18, 3, 1, UBC Bus loop, Suddenly running, Night time
+Mar 19 2014 16:00, 60, 50, 2, Pacific Spirit Park, Suddenly running, Night time
+Mar 19 2014 22:00, 18, 9, 1, UBC Bus loop, Suddenly fell, Night time
