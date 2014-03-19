@@ -4,10 +4,11 @@
 // MMM DD YYYY HH:MM, Guardian Request Duration, Interval after Request to trigger safety alert, 
 // map number (1=bus, 2=pacific), reason1, reason2, reason3, reasons...
 
-Mar 18 2014 12:00, 30, 15, 2, Dangerous area, Suddenly running, Night time
-Mar 18 2014 16:00, 15, 15, 1, Dangerous area, Suddenly running, Night time
-Mar 18 2014 22:00, 45, 5, 2, Dangerous area, Suddenly running, Night time
+Mar 18 2014 19:00, 30, 15, 2, Ran over by a train, Suddenly running, Night time
+Mar 18 2014 21:00, 15, 15, 1, Bit by a snake, Suddenly running, Night time
+Mar 18 2014 23:00, 45, 5, 2, On fire, Suddenly running, Night time
 
-Mar 19 2014 12:00, 20, 15, 1, Dangerous area, Suddenly running, Night time
-Mar 19 2014 16:00, 60, 55, 2, Dangerous area, Suddenly running, Night time
-Mar 19 2014 22:00, 30, 2, 1, Dangerous area, Suddenly running, Night time
+Mar 19 2014 08:00, 20, 15, 1, Electrocuted, Suddenly running, Night time
+Mar 19 2014 10:00, 20, 15, 1, Heart attack, Suddenly running, Night time
+Mar 19 2014 12:00, 60, 55, 2, Shot by stranger, Suddenly running, Night time
+Mar 19 2014 14:00, 30, 2, 1, Murdered, Suddenly running, Night time

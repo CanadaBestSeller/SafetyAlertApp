@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void addTestEntry() {
-		Toast.makeText(this, "Activated test mode! Guardian Request in 10 seconds.", Toast.LENGTH_LONG).show();
+		Toast.makeText(this, "Activated test mode!\nGuardian Request in 10 seconds.", Toast.LENGTH_LONG).show();
 		stopService(safetyAppIntent);
 		safetyAppIntent.putExtra(EXTRA_TEST_BOOLEAN, true);
 		startService(safetyAppIntent);

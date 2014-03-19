@@ -17,7 +17,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="You did not respond to the Guardianship Session Request within the allotted time.\n\nCould you give us a reason and a description of your environment at the time the request was sent?"
+        android:text="[Required Questionnaire]\n\nYou did not respond to the Guardianship Session Request within the allotted time.\n\nCould you give us a reason and a description of your environment at the time the request was sent?"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView

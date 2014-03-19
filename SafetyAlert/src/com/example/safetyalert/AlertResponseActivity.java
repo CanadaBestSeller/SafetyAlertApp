@@ -24,7 +24,7 @@ public class AlertResponseActivity extends Activity {
 		setContentView(R.layout.activity_alert_response);
 
 		TextView t = (TextView)findViewById(R.id.alert_response_body);
-		t.append(g.getReasonsAsString());
+		t.append("Sent:\n" + Utils.long2timestamp(g.triggerTime) + "\n\n" + g.getReasonsAsString());
 
 		ImageView map = (ImageView) findViewById(R.id.map);
 		map.setImageBitmap(Utils.int2png(this, g.mapNumber));
@@ -38,6 +38,5 @@ public class AlertResponseActivity extends Activity {
 	public void toQuestionnaire(View view) {
 		Intent questionnaire = new Intent(this, Questionnaire.class);
 		startActivity(questionnaire);
-		finish();
 	}
 }
