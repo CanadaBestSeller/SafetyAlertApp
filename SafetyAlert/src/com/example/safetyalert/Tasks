@@ -1,7 +1,5 @@
 In order or priority:
 ===
-Alarm should be prepared after Questionnaire calls finish() instead of end of setAlarm().
-
 Crop map to half height & half width.
 
 Enable progress bar after guardian mode is on.
