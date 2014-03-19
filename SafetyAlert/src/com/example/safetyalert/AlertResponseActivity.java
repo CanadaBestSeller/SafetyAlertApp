@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AlertResponseActivity extends Activity {
 
@@ -37,6 +38,16 @@ public class AlertResponseActivity extends Activity {
 
 	public void toQuestionnaire(View view) {
 		Intent questionnaire = new Intent(this, Questionnaire.class);
-		startActivity(questionnaire);
+		startActivityForResult(questionnaire, 0);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    if (requestCode == 0) {
+	         if (resultCode == RESULT_OK) {
+	        	Toast.makeText(this, "FINISHED!", Toast.LENGTH_SHORT).show();
+	            this.finish();
+	         }
+	     }
 	}
 }

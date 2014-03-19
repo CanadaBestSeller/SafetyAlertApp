@@ -57,16 +57,11 @@ public class SafetyAppService extends Service {
 		notificationManager.cancel(GuardianModeActivity.GUARDIAN_MODE_NOTIFICATION_ID);
 		notificationManager.cancel(AlertAlarm.ALERT_NOTIFICATION_ID);
 
-		toast(R.string.safety_app_off, Toast.LENGTH_SHORT);
 		guardianModeAlarm.cancelAlarm(this);
 	}
 
 	@Override
 	public IBinder onBind(Intent arg0) {
 		return null;
-	}
-	
-	private void toast(int id, int duration) {
-		Toast.makeText(this, this.getResources().getString(id), duration).show();
 	}
 }

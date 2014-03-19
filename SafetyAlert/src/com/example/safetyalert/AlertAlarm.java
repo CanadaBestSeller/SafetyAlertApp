@@ -46,7 +46,7 @@ public class AlertAlarm extends BroadcastReceiver {
 
 		// internal=>0 implies test value
 		long alertTriggerTime = (g.interval == 0) ?
-				System.currentTimeMillis() + 10000 : System.currentTimeMillis() + (g.interval*60*1000);
+				System.currentTimeMillis() + 3000 : System.currentTimeMillis() + (g.interval*60*1000);
 		Utils.appendToLog("[PREPARED ALERT] Will trigger on " + Utils.long2timestamp(alertTriggerTime));
 		am.set(AlarmManager.RTC_WAKEUP, alertTriggerTime, operation);
 	}

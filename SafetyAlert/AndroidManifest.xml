@@ -45,15 +45,6 @@
             android:process=":remote" 
             android:name=".GuardianModeAlarm">
         </receiver>
-
-        <activity
-            android:name="com.example.safetyalert.DisplayTriggerDetailsActivity"
-            android:label="Level 2 Danger"
-            android:parentActivityName="com.example.safetyalert.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.safetyalert.MainActivity" />
-        </activity>
         
         <activity
             android:name="com.example.safetyalert.AlertResponseActivity"

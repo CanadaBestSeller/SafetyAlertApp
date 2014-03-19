@@ -16,7 +16,7 @@ public class Questionnaire extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_questionnaire);
-		//getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(false);
 	}
 
 	public void saveQuestionnaire(View view) {
@@ -37,6 +37,7 @@ public class Questionnaire extends Activity {
 		
 		Toast.makeText(this, "Thank you!", Toast.LENGTH_SHORT).show();
 		
+		setResult(RESULT_OK, null);
 		finish();
 	}
 }
