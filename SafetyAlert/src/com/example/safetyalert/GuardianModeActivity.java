@@ -1,6 +1,7 @@
 package com.example.safetyalert;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ public class GuardianModeActivity extends Activity {
 
 	public static final int GUARDIAN_MODE_NOTIFICATION_ID = 1;
 
+	private NotificationManager nManager;
 	private GuardianRequest g;
 	private boolean sorry, past;
 	private AlertAlarm alertAlarm;
@@ -47,6 +49,11 @@ public class GuardianModeActivity extends Activity {
 
 			Utils.appendToLog("[GUARDIAN REQUEST ACCEPTED] Duration: "
 					+ g.guardianshipDuration + "mins.");
+
+			// Cancel pending guardian mode notification
+			nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+			nManager.cancel(GuardianModeActivity.GUARDIAN_MODE_NOTIFICATION_ID);
+
 		}
 	}
 
